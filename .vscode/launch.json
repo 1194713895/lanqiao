@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/zlm/Desktop/lanqiao",
-      "program": "/Users/zlm/Desktop/lanqiao/build/Debug/outDebug"
+      "cwd": "/Users/zlm/Desktop/C",
+      "program": "/Users/zlm/Desktop/C/build/Debug/outDebug"
     }
   ]
 }
