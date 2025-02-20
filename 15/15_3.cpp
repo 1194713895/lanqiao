@@ -17,7 +17,7 @@ int count_n = 0;
 
 int num = 0;
 
-char str[20]="zlm";
+char str[20];
 // string str = "zlm";
 
 int main() {
