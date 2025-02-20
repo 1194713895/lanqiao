@@ -13,7 +13,7 @@ long long n = 0;
 
 long long a[200000];
 
-int count = 0;
+int count_n = 0;
 
 int num = 0;
 
@@ -32,8 +32,24 @@ int main() {
         cin >> a[i];
         snprintf(str, sizeof(str),"%lld", a[i]);
         num = strlen(str);
-        cout << num << endl;
+        for(int j = 0; j < num; j++)
+        {
+            int temp = str[j] - '0';
+            if(temp==0||temp==4||temp==6||temp==9)
+            {
+                count_n++;
+            }
+            else if (temp==8)
+            {
+                count_n+=2;
+            }
+            
+        }
+        cout << count_n << endl;
+        // cout << num << endl;
+        num = 0;
         memset(str,0,sizeof(str));
+        count_n=0;
     }
 
     cout << str << endl;
