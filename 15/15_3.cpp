@@ -29,11 +29,10 @@ int main() {
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
-        sprintf(str, "%lld", a[i]);
+        snprintf(str, sizeof(str),"%lld", a[i]);
         num = strlen(str);
         cout << num << endl;
         memset(str,0,sizeof(str));
-
     }
 
     cout << str << endl;
