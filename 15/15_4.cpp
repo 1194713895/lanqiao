@@ -26,7 +26,17 @@ int main()
         }
     }
 
-    
+
 
     return 0;
 }
+
+/*
+aabb    abba    bbaa    baab
+
+abba    bbaa    baab    aabb
+
+acca    ccaa    caac    aacc
+
+abcd    bcda    cdab    dabc
+*/
