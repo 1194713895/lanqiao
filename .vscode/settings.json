@@ -74,6 +74,7 @@
     "deque": "cpp",
     "list": "cpp",
     "filesystem": "cpp",
-    "*.tcc": "cpp"
+    "*.tcc": "cpp",
+    "cmath": "cpp"
   }
 }
