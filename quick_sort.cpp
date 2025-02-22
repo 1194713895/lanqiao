@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include<iostream>
+using namespace std;
 
+void printArray(int arr[], int size);
 // 快速排序的交换函数
 void swap(int* a, int* b) {
     int temp = *a;
@@ -23,6 +26,8 @@ int partition(int arr[], int low, int high) {
 
     // 将基准元素放到正确的位置
     swap(&arr[i + 1], &arr[high]);
+
+    printArray(arr, 6);
     return i + 1;
 }
 
@@ -56,8 +61,8 @@ int main() {
     // 快速排序
     quickSort(arr, 0, n - 1);
 
-    printf("Sorted array: \n");
-    printArray(arr, n);
+    // printf("Sorted array: \n");
+    // printArray(arr, n);
 
     return 0;
 }
