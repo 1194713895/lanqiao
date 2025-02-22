@@ -75,6 +75,9 @@
     "list": "cpp",
     "filesystem": "cpp",
     "*.tcc": "cpp",
-    "cmath": "cpp"
+    "cmath": "cpp",
+    "iostream": "cpp",
+    "iosfwd": "cpp",
+    "istream": "cpp"
   }
 }
