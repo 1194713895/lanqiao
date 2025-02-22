@@ -26,8 +26,6 @@ int partition(int arr[], int low, int high) {
 
     // 将基准元素放到正确的位置
     swap(&arr[i + 1], &arr[high]);
-
-    printArray(arr, 6);
     return i + 1;
 }
 
