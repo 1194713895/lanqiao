@@ -12,19 +12,30 @@ using namespace std;
 int main()
 {
     int n = 0;
-    int m = 0;
-
-    cin >> n >> m;
+    int m = 0; 
     
-    char a[n][m];
+    cin >> n >> m;
+
+    char** a = new char*[n];
+
+    for (int i = 0; i < n; i++) {
+        a[i] = new char[m];
+        for (int j = 0; j < m; j++) {
+            cin >> a[i][j];
+        }
+    }
 
     for(int i =0; i < n; i++)
     {
         for(int j = 0; j < m; j++)
         {
-            cin >> a[i][j];
+            cout << a[i][j] << " ";
         }
     }
+
+    for(int i =0; i < n; i++)
+        delete[] a[i];
+    delete[] a;
 
     return 0;
 }
