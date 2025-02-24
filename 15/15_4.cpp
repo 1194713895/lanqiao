@@ -48,7 +48,8 @@ int main()
         }
         cout<<endl;
     }
-
+    // auto result = mismatch(a.begin(), a.end(), b.begin());
+    // return distance(a.begin(), result.first); // 返回匹配的元素个数
 
     // vector<int> a = {1,2,3,4,5,6,7,8,9,0};
     // vector<int> b = {0,9,8,7,6,5,4,3,2,1};
