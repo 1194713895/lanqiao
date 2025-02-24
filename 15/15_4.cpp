@@ -15,20 +15,55 @@ int main()
     int n = 0;
     int m = 0; 
     
-    // cin >> n >> m;
+    cin >> n >> m;
 
-    vector<int> a = {1,2,3,4,5,6,7,8,9,0};
-    vector<int> b = {0,9,8,7,6,5,4,3,2,1};
+    vector<vector<char>> a(n,vector<char>(m));
+    vector<vector<vector<char>>> b(n,vector<vector<char>>(m,vector<char>(m)));
 
-    vector<pair<int,int> > c;
-
-    for(int i=0;i<10;i++){
-        c.push_back(make_pair(a[i],b[i]));
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            cin>>a[i][j];
+        }
     }
 
-    for(int i=0;i<10;i++){
-        cout<<c[i].second<<" ";
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+          rotate(a[i].begin(),a[i].begin()+1,a[i].end());
+          b[i][j]=a[i];
+        }
     }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            for(int p=0;p<m;p++)
+            {
+                cout<<b[i][j][p];
+            }
+            cout<<" ";
+        }
+        cout<<endl;
+    }
+
+
+    // vector<int> a = {1,2,3,4,5,6,7,8,9,0};
+    // vector<int> b = {0,9,8,7,6,5,4,3,2,1};
+
+    // vector<pair<int,int> > c;
+
+    // for(int i=0;i<10;i++){
+    //     c.push_back(pair{a[i],b[i]});
+    // }
+
+    // sort(c.begin(),c.end());
+
+    // for(int i=0;i<10;i++){
+    //     cout<<c[i].second<<" ";
+    // }
 
     // char** a = new char*[n];
 
@@ -62,4 +97,6 @@ abba    bbaa    baab    aabb
 acca    ccaa    caac    aacc
 
 abcd    bcda    cdab    dabc
+
+
 */
