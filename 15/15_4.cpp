@@ -128,13 +128,7 @@ int find(int x) {   // 并查集：查
     }
     return pre[x];
 }
-/*
-4 4
-aabb
-abba
-acca
-abcd
-*/
+
 int main()
 {
     cin >> n >> m;
