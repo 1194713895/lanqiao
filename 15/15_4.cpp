@@ -99,5 +99,4 @@ acca    ccaa    caac    aacc
 
 abcd    bcda    cdab    dabc
 
-
 */
