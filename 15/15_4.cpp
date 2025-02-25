@@ -161,6 +161,11 @@ int main()
             pre[u] = v; // 并查集：并
             ans += e[i].w; // 累加权值
         }
+        cout<<"u:"<<u<<" "<<"v:"<<v<<endl;
+    }
+
+    for(int i = 0; i < idx; i++) {
+        cout<<pre[i]<<endl;
     }
 
     cout << ans;
