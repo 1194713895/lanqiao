@@ -154,12 +154,18 @@ int main()
     for(int i = 0; i < idx; i++) {
         cout<<e[i].a<<" "<<e[i].b<<" "<<e[i].w<<" "<<endl;
     }
-
+    // int find(int x) {   // 并查集：查
+    //     if(pre[x] != x) {   // 如果x的父节点不是自己，说明x不是根
+    //         x = find(pre[x]);   // 继续递归寻找根节点
+    //     }
+    //     return pre[x];
+    // }
     for (int i = 0; i < idx; i++) {
         int u = find(e[i].a), v = find(e[i].b);
         if (u != v) {
             pre[u] = v; // 并查集：并
             ans += e[i].w; // 累加权值
+            cout<<"i:"<<i<<" ";
         }
         cout<<"u:"<<u<<" "<<"v:"<<v<<endl;
     }
