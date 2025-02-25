@@ -145,7 +145,7 @@
 // #include <unistd.h>
 // #include <cstring>
 
-// #define PORT 777
+// #define PORT 888
 // #define BUFFER_SIZE 1024
 
 // int main() {
@@ -198,7 +198,7 @@
 #include <unistd.h>
 #include <cstring>
 
-#define SERVER_IP "fe80::94ad:23ff:fe39:da64"  // 或者使用实际的IPv6地址
+#define SERVER_IP "2409:8938:c6e:dc5:2522:67f5:e4a0:a3bc"  // 或者使用实际的IPv6地址
 #define PORT 777
 #define BUFFER_SIZE 1024
 
@@ -221,7 +221,7 @@ int main() {
         perror("Invalid IPv6 address");
         return 1;
     }
-
+    // while(1)
     // 发送消息到服务器
     sendto(sockfd, message, strlen(message), 0, (const struct sockaddr *)&server_addr, sizeof(server_addr));
 
