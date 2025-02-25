@@ -1,7 +1,14 @@
-#include<iostream>
-#include<string>
-#include<vector>
-#include<string.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <string.h>
+#include <fstream>  // 用于文件输入输出
+#include <sstream>  // 用于字符串流
+#include <time.h>
+#include <cmath>
+#include <stdio.h>
+#include <string.h>
+#include <algorithm>
 using namespace std;
 
 

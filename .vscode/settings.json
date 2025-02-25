@@ -78,6 +78,7 @@
     "cmath": "cpp",
     "iostream": "cpp",
     "iosfwd": "cpp",
-    "istream": "cpp"
+    "istream": "cpp",
+    "algorithm": "cpp"
   }
 }
