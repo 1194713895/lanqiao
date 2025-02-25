@@ -138,6 +138,8 @@ int main()
         org.push_back(s); // vector向量，加入字符串s
     }
 
+    cout<<"各边劝和："<<endl;
+
     for(int i = 0; i < n; i++) {
         for(int j = i + 1; j < n; j++){
             e[idx++] = {i, j, sol(i, j)};
@@ -146,6 +148,12 @@ int main()
     }
 
     sort(e, e + idx, cmp);
+
+    cout<<"排序后："<<endl;
+
+    for(int i = 0; i < idx; i++) {
+        cout<<e[i].a<<" "<<e[i].b<<" "<<e[i].w<<" "<<endl;
+    }
 
     for (int i = 0; i < idx; i++) {
         int u = find(e[i].a), v = find(e[i].b);
