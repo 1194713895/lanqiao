@@ -43,8 +43,8 @@ int sol(int x, int y) { // 计算最长公共子串长度
                 tmp++;
                 if(tmp==m)break;
             }
-        ans = max(ans,tmp);
-        tmp  = 0;
+            ans = max(ans,tmp);
+            tmp  = 0;
         }
     }
     return ans;
@@ -89,7 +89,6 @@ int main()
     cout << ans;
   return 0;
 }
-
 
 // #include <iostream>
 // #include <vector>

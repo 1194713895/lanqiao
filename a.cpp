@@ -29,3 +29,11 @@ int main() {
 git config --global http.proxy http://172.20.10.1:7890 
 git config --global https.proxy http://172.20.10.1:7890
 */
+/*
+4 4
+aabb
+abba
+acca
+abcd
+ 
+*/

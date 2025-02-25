@@ -128,7 +128,13 @@ int find(int x) {   // 并查集：查
     }
     return pre[x];
 }
-
+/*
+4 4
+aabb
+abba
+acca
+abcd
+*/
 int main()
 {
     cin >> n >> m;
@@ -141,6 +147,7 @@ int main()
     for(int i = 0; i < n; i++) {
         for(int j = i + 1; j < n; j++){
             e[idx++] = {i, j, sol(i, j)};
+            cout<<e[idx-1].a<<" "<<e[idx-1].b<<" "<<e[idx-1].w<<" "<<endl;
         }
     }
 
