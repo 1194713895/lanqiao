@@ -170,7 +170,7 @@ int main()
         cout<<"u:"<<u<<" "<<"v:"<<v<<endl;
     }
 
-    for(int i = 0; i < idx; i++) {
+    for(int i = 0; i < n; i++) {
         cout<<pre[i]<<endl;
     }
 
