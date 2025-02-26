@@ -160,10 +160,15 @@ int main()
     //     }
     //     return pre[x];
     // }
+    int fir_v=-1;
     for (int i = 0; i < idx; i++) {
         int u = find(e[i].a), v = find(e[i].b);
+        if(i==0) fir_v=v;
         if (u != v) {
-            pre[u] = v; // 并查集：并
+            if(u!=fir_v)
+                pre[u] = v; // 并查集：并
+            else
+                pre[v] = u;
             ans += e[i].w; // 累加权值
             cout<<"i:"<<i<<" ";
         }
