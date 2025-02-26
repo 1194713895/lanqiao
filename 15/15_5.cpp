@@ -43,12 +43,85 @@ int main()
             b.push_back(0);
         }
     }
+    cout<<"b:";
 
     for(int i=0;i<l;i++)
     {
         cout<<b[i]<<" ";
     }
+    cout<<endl;
 
-    cout<<endl<<pivot;
+    int max=0;
+    int count=0,j=0;
+    vector<int> table;
+
+    for(int i=0;i<n;i++)
+    {
+        int v=0;
+        // int mm=a[i];
+        if(a[i]<0)
+        {
+            if((0-a[i])>m)
+            {
+                count=0;
+                // j++;
+                // v=m;//pivot
+                // for(int i=0;i<v;i++)
+                // {
+                //     count+=b[i];
+                // }
+            }
+            else
+            {
+                int j=-a[0]+a[i];
+                for(int i=j;i<pivot+1;i++)
+                {
+                    // cout<<"i:"<<i<<"mm:"<<mm<<" ";
+                    count+=b[i];
+                }
+                int p=pivot+1+(m-pivot)/2;
+                for(int i=pivot+1;i<p;i++)
+                {
+                    count+=b[i];
+                }
+
+            }
+        }
+        else
+        {
+            if((a[i])>=m)
+            {
+                count=0;
+            }
+            else
+            {
+                int j=-a[0]+a[i]+1;
+                for(int i=pivot;i<j;i++)
+                {
+                    count+=b[i];
+                }
+                int p=pivot-(m-pivot)/2;
+                for(int i=p;i<pivot;i++)
+                {
+                    count+=b[i];
+                }
+
+            }
+
+        }
+        
+        table.push_back(count);
+
+        if(count>max) max=count;
+        count=0;
+        
+    }
+    cout<<endl;
+
+    for(int i=0;i<n;i++) cout<<table[i]<<" ";
+
+    
+
+    cout<<endl<<max;
     
 }
