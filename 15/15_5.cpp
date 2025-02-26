@@ -53,6 +53,8 @@ int main()
 
     int max=0;
     int count=0,j=0;
+    m+=1;
+
     vector<int> table;
 
     for(int i=0;i<n;i++)
