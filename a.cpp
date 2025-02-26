@@ -36,4 +36,10 @@ abba
 acca
 abcd
 
+4 4
+abcd
+abba
+acca
+aaab
+
 */
