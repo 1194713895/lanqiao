@@ -51,9 +51,8 @@ int main()
     }
     cout<<endl;
 
-    int max=0;
+    int max_n=0;
     int count=0,j=0;
-    m+=1;
 
     vector<int> table;
 
@@ -75,17 +74,26 @@ int main()
             }
             else
             {
-                int j=-a[0]+a[i];
+                int j=-a[0]+a[i];//cout<<"j:"<<j<<endl;
                 for(int i=j;i<pivot+1;i++)
                 {
                     // cout<<"i:"<<i<<"mm:"<<mm<<" ";
                     count+=b[i];
                 }
-                int p=pivot+1+(m-pivot)/2;
+                // int p=pivot+1+(m-pivot)/2;
+                int p=pivot+1+(m+a[i])/2;
+
+                int t1=0,t2=0;
                 for(int i=pivot+1;i<p;i++)
                 {
-                    count+=b[i];
-                }
+                    // count+=b[i];
+                    t1+=b[i-a[i]];
+                }cout<<"t1:"<<t1<<endl;
+                int q=a[i]-(m+a[i])/2;;
+                for(int j=q;j<a[i];j++) t2+=b[i-a[i]];
+                cout<<"t2:"<<q<<t2<<endl;
+                int f=max(t1,t2);
+                count+=f;
 
             }
         }
@@ -102,7 +110,7 @@ int main()
                 {
                     count+=b[i];
                 }
-                int p=pivot-(m-pivot)/2;
+                int p=pivot-(m-a[i])/2;
                 for(int i=p;i<pivot;i++)
                 {
                     count+=b[i];
@@ -114,7 +122,7 @@ int main()
         
         table.push_back(count);
 
-        if(count>max) max=count;
+        if(count>max_n) max_n=count;
         count=0;
         
     }
@@ -124,6 +132,6 @@ int main()
 
     
 
-    cout<<endl<<max;
+    cout<<endl<<max_n;
     
 }
