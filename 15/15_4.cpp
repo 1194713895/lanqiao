@@ -91,97 +91,97 @@ using namespace std;
 // }
 
 
-const int N = 210;
-int pre[N], n, m, idx, ans = 0; // pre[N]存储父节点的值
+// const int N = 210;
+// int pre[N], n, m, idx, ans = 0; // pre[N]存储父节点的值
 
-vector<string> org;
-string s;
+// vector<string> org;
+// string s;
 
-typedef struct Edge {
-    int a, b, w;
-} edge;
-edge e[N*N];
+// typedef struct Edge {
+//     int a, b, w;
+// } edge;
+// edge e[N*N];
 
-int sol(int x, int y) { // 计算最长公共子串长度
-    int ans = 0, tmp = 0;
-    string s = org[x], t = org[y];
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < m; j++) {
-            while (s[(i+tmp)%m] == t[(j+tmp)%m]) { // 循环取余避免越界
-                tmp++;
-                if(tmp==m)break;
-            }
-        ans = max(ans,tmp);
-        tmp  = 0;
-        }
-    }
-    return ans;
-}
+// int sol(int x, int y) { // 计算最长公共子串长度
+//     int ans = 0, tmp = 0;
+//     string s = org[x], t = org[y];
+//     for (int i = 0; i < m; i++) {
+//         for (int j = 0; j < m; j++) {
+//             while (s[(i+tmp)%m] == t[(j+tmp)%m]) { // 循环取余避免越界
+//                 tmp++;
+//                 if(tmp==m)break;
+//             }
+//         ans = max(ans,tmp);
+//         tmp  = 0;
+//         }
+//     }
+//     return ans;
+// }
 
-bool cmp(edge x, edge y) { // 自定义比较函数
-    return x.w > y.w;   // 根据结构体数组边矩阵的权值w来比较，从大到小的顺序
-}
+// bool cmp(edge x, edge y) { // 自定义比较函数
+//     return x.w > y.w;   // 根据结构体数组边矩阵的权值w来比较，从大到小的顺序
+// }
 
-int find(int x) {   // 并查集：查
-    if(pre[x] != x) {   // 如果x的父节点不是自己，说明x不是根
-        x = find(pre[x]);   // 继续递归寻找根节点
-    }
-    return pre[x];
-}
+// int find(int x) {   // 并查集：查
+//     if(pre[x] != x) {   // 如果x的父节点不是自己，说明x不是根
+//         x = find(pre[x]);   // 继续递归寻找根节点
+//     }
+//     return pre[x];
+// }
 
-int main()
-{
-    cin >> n >> m;
-    for(int i = 0; i < n; i++) {
-        pre[i] = i; // 初始每个节点都是单独的节点，即根只有自己
-        cin >> s;
-        org.push_back(s); // vector向量，加入字符串s
-    }
+// int main()
+// {
+//     cin >> n >> m;
+//     for(int i = 0; i < n; i++) {
+//         pre[i] = i; // 初始每个节点都是单独的节点，即根只有自己
+//         cin >> s;
+//         org.push_back(s); // vector向量，加入字符串s
+//     }
 
-    cout<<"各边劝和："<<endl;
+//     cout<<"各边劝和："<<endl;
 
-    for(int i = 0; i < n; i++) {
-        for(int j = i + 1; j < n; j++){
-            e[idx++] = {i, j, sol(i, j)};
-            cout<<e[idx-1].a<<" "<<e[idx-1].b<<" "<<e[idx-1].w<<" "<<endl;
-        }
-    }
+//     for(int i = 0; i < n; i++) {
+//         for(int j = i + 1; j < n; j++){
+//             e[idx++] = {i, j, sol(i, j)};
+//             cout<<e[idx-1].a<<" "<<e[idx-1].b<<" "<<e[idx-1].w<<" "<<endl;
+//         }
+//     }
 
-    sort(e, e + idx, cmp);
+//     sort(e, e + idx, cmp);
 
-    cout<<"排序后："<<endl;
+//     cout<<"排序后："<<endl;
 
-    for(int i = 0; i < idx; i++) {
-        cout<<e[i].a<<" "<<e[i].b<<" "<<e[i].w<<" "<<endl;
-    }
-    // int find(int x) {   // 并查集：查
-    //     if(pre[x] != x) {   // 如果x的父节点不是自己，说明x不是根
-    //         x = find(pre[x]);   // 继续递归寻找根节点
-    //     }
-    //     return pre[x];
-    // }
-    int fir_v=-1;
-    for (int i = 0; i < idx; i++) {
-        int u = find(e[i].a), v = find(e[i].b);
-        if(i==0) fir_v=v;
-        if (u != v) {
-            if(u!=fir_v)
-                pre[u] = v; // 并查集：并
-            else
-                pre[v] = u;
-            ans += e[i].w; // 累加权值
-            cout<<"i:"<<i<<" ";
-        }
-        cout<<"u:"<<u<<" "<<"v:"<<v<<endl;
-    }
+//     for(int i = 0; i < idx; i++) {
+//         cout<<e[i].a<<" "<<e[i].b<<" "<<e[i].w<<" "<<endl;
+//     }
+//     // int find(int x) {   // 并查集：查
+//     //     if(pre[x] != x) {   // 如果x的父节点不是自己，说明x不是根
+//     //         x = find(pre[x]);   // 继续递归寻找根节点
+//     //     }
+//     //     return pre[x];
+//     // }
+//     int fir_v=-1;
+//     for (int i = 0; i < idx; i++) {
+//         int u = find(e[i].a), v = find(e[i].b);
+//         if(i==0) fir_v=v;
+//         if (u != v) {
+//             if(u!=fir_v)
+//                 pre[u] = v; // 并查集：并
+//             else
+//                 pre[v] = u;
+//             ans += e[i].w; // 累加权值
+//             cout<<"i:"<<i<<" ";
+//         }
+//         cout<<"u:"<<u<<" "<<"v:"<<v<<endl;
+//     }
 
-    for(int i = 0; i < n; i++) {
-        cout<<pre[i]<<endl;
-    }
+//     for(int i = 0; i < n; i++) {
+//         cout<<pre[i]<<endl;
+//     }
 
-    cout << ans;
-  return 0;
-}
+//     cout << ans;
+//   return 0;
+// }
 
 /*
 aabb    abba    bbaa    baab
