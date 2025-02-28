@@ -163,15 +163,47 @@ using namespace std;
 //     } 
 // }
 
-int main(){
-    vector<int> a(5,0);
 
-    // 输出迭代器的地址
-    printf("%p\n", (void*)&(*a.begin()));  // 输出迭代器所指向的地址
-    // 输出迭代器的地址
-    printf("%p\n", (void*)&(*a.end()));  // 输出迭代器所指向的地址
+#define int long long
+const int mod = 1000000007;
+const int N = 100002;  // 行/列最大可能离散化后的等级数
+const int M = 200002;  // 组合数最大可能参数
 
-    printf("%d\n", a.end()-a.begin());  // 输出迭代器所指向的地址
+// 快速幂函数（用于计算逆元）
+int qpow(int a, int pw) {
+    int b = 1;
+    while (pw > 0) {
+        if (pw & 1) {
+            b = b * a % mod;
+        }
+        a = a * a % mod;
+        cout<<a<<endl;
+        pw >>= 1;
+    }
+    return b;
+}
+
+vector<int> f(M);  // 阶乘数组
+
+// 预处理阶乘数组，用于快速计算组合数
+void pre() {
+    f[0] = 1;
+    for (int i = 1; i < M; i++) {
+        f[i] = f[i - 1] * i % mod;
+    }
+}
+
+// 组合数计算（使用费马小定理求逆元）
+int C(int n, int k) {
+    return f[n] * qpow(f[k] * f[n - k] % mod, mod - 2) % mod;
+}
+
+int32_t main(){
+    
+    int a=2,b=3;
+    int ans=qpow(2,4);
+
+    cout<<ans;
 
     return 0;
 }
