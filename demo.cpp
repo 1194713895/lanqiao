@@ -201,7 +201,7 @@ int C(int n, int k) {
 int32_t main(){
     
     int a=2,b=3;
-    int ans=qpow(2,4);
+    int ans=qpow(2,8);
 
     cout<<ans;
 
