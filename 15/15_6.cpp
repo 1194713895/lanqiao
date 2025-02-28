@@ -288,8 +288,8 @@ int C(int n, int k) {
 }
 
 int32_t main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+    // ios::sync_with_stdio(0);
+    // cin.tie(0);
     
     int n, m, t;
     cin >> n >> m >> t;

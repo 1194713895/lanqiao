@@ -126,39 +126,53 @@ using namespace std;
 //     return 0;
 // }
 
-vector<string> org={"aabb", "abba", "acca", "abcd"};
+// vector<string> org={"aabb", "abba", "acca", "abcd"};
 
-int n=4,m=4;
+// int n=4,m=4;
 
-int sol(int x, int y)
-{
-    string s=org[x], t=org[y];
-    int ans=0, tmp=0;
-    for(int i=0;i<m;i++)
-    {
-        for(int j=0;j<m;j++)
-        {
-            while(s[(i+tmp)%m]==t[(j+tmp)%m])
-            {
-                tmp++;
-                if(tmp==m) break;
-            }
-            ans=max(ans,tmp);
-            tmp=0;
-        }
-    }
-    return ans;
-}
+// int sol(int x, int y)
+// {
+//     string s=org[x], t=org[y];
+//     int ans=0, tmp=0;
+//     for(int i=0;i<m;i++)
+//     {
+//         for(int j=0;j<m;j++)
+//         {
+//             while(s[(i+tmp)%m]==t[(j+tmp)%m])
+//             {
+//                 tmp++;
+//                 if(tmp==m) break;
+//             }
+//             ans=max(ans,tmp);
+//             tmp=0;
+//         }
+//     }
+//     return ans;
+// }
 
-int main()
-{
-    for(int i=0;i<n;i++)
-    {
-        for(int j=i+1;j<n;j++)
-        {
-          cout<<i<<" "<<j<<" "<<sol(i, j);
-          cout<<endl;
-        }
+// int main()
+// {
+//     for(int i=0;i<n;i++)
+//     {
+//         for(int j=i+1;j<n;j++)
+//         {
+//           cout<<i<<" "<<j<<" "<<sol(i, j);
+//           cout<<endl;
+//         }
         
-    } 
+//     } 
+// }
+
+int main(){
+    vector<int> a(5,0);
+
+    // 输出迭代器的地址
+    printf("%p\n", (void*)&(*a.begin()));  // 输出迭代器所指向的地址
+    // 输出迭代器的地址
+    printf("%p\n", (void*)&(*a.end()));  // 输出迭代器所指向的地址
+
+    printf("%d\n", a.end()-a.begin());  // 输出迭代器所指向的地址
+
+    return 0;
 }
+
