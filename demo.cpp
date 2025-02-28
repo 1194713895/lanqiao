@@ -177,7 +177,6 @@ int qpow(int a, int pw) {
             b = b * a % mod;
         }
         a = a * a % mod;
-        cout<<a<<endl;
         pw >>= 1;
     }
     return b;
@@ -201,7 +200,7 @@ int C(int n, int k) {
 int32_t main(){
     
     int a=2,b=3;
-    int ans=qpow(2,8);
+    int ans=qpow(2,0xE);
 
     cout<<ans;
 
