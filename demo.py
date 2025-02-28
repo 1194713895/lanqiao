@@ -57,7 +57,7 @@ f = []  # 阶乘数组
 # 预处理阶乘数组，用于快速计算组合数
 def pre():
     f.append(1)
-    for i in range(1, M):
+    for i in range(1, 10):
         f.append(f[i-1] * i % mod)
 
 # 组合数计算（使用费马小定理求逆元）
@@ -65,6 +65,8 @@ def C(n, k):
     return f[n] * qpow((f[k] * f[n-k]) % mod, mod-2) % mod
 
 pre()  # 预处理阶乘
+
+print(f)
 
 while t > 0:
     # 输入处理：tr,tc是终点坐标，sr,sc是起点坐标

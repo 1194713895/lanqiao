@@ -200,9 +200,11 @@ int C(int n, int k) {
 int32_t main(){
     
     int a=2,b=3;
-    int ans=qpow(2,0xE);
+    // int ans=qpow(2,0xE);
 
-    cout<<ans;
+    // cout<<ans;
+
+    pre();
 
     return 0;
 }
