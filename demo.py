@@ -21,6 +21,7 @@ c = list(map(int, input().split()))
 # 对行和列权重进行离散化处理，转换为等级（数值越大，权重越高）
 r = lsh(r)
 c = lsh(c)
+
 print()
 print("离散化后：")
 print(r)
