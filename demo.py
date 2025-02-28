@@ -21,6 +21,10 @@ c = list(map(int, input().split()))
 # 对行和列权重进行离散化处理，转换为等级（数值越大，权重越高）
 r = lsh(r)
 c = lsh(c)
+print()
+print("离散化后：")
+print(r)
+print(c)
 
 a = [0] * N  # 存储每个行等级的出现次数，并进行前缀乘积
 b = [0] * N
