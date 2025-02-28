@@ -68,6 +68,8 @@ pre()  # 预处理阶乘
 
 print(f)
 
+print("a:",a[0:n])
+print("b:",b[0:m])
 while t > 0:
     # 输入处理：tr,tc是终点坐标，sr,sc是起点坐标
     sr, sc, tr, tc = map(int, input().split())
@@ -93,13 +95,16 @@ while t > 0:
         else:
             # 前缀乘积的商，表示中间等级的乘积
             v = a[r[tr]-1] // a[r[sr]] % mod
+            print("a[r[tr]-1]:",a[r[tr]-1],"  ","a[r[sr]]:",a[r[sr]])
 
+        print("v:",v)
         # 计算列方向的路径数：从tc等级到sc等级的乘积
         if sc == tc:
             w = 1
         else:
             w = b[c[tc]-1] // b[c[sc]] % mod
-
+            print("b[c[tc]-1]:",b[c[tc]-1],"  ","b[c[sc]]:",b[c[sc]])
+        print("w:",w)
         # 总路径数 = 组合数 * 行路径数 * 列路径数
         print(C(x + y, x) * v * w % mod)
     t -= 1

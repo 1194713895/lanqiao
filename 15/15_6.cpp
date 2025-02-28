@@ -343,6 +343,21 @@ int32_t main() {
             // 计算列方向的路径数：从tc等级到sc等级的乘积
             int w = (sc == tc) ? 1 : b[c[tc] - 1] * qpow(b[c[sc]], mod - 2) % mod;
 
+            // int v,w;
+
+            // if(sr==tr){
+            //     v=1;
+            // }
+            // else{
+            //     v=(a[r[tr]-1]/a[r[sr]])%mod;
+            // }
+            // if(sc==tc){
+            //     w=1;
+            // }
+            // else{
+            //     w=(b[c[tc]-1]/b[c[sc]])%mod;
+            // }
+
             // 总路径数 = 组合数 * 行路径数 * 列路径数
             cout << C(x + y, x) * v % mod * w % mod << "\n";
         }
