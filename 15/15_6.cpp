@@ -4,66 +4,66 @@
 
 using namespace std;
 
-struct chd{
-    int r;
-    int c;
-};
+// struct chd{
+//     int r;
+//     int c;
+// };
 
-int main()
-{
-    int n,m,T;
-    cin>>n>>m>>T;
+// int main()
+// {
+//     int n,m,T;
+//     cin>>n>>m>>T;
 
-    vector<vector<chd>> a(n,vector<chd>(m));
-    vector<chd> b(T);
-    vector<chd> c(T);
+//     vector<vector<chd>> a(n,vector<chd>(m));
+//     vector<chd> b(T);
+//     vector<chd> c(T);
 
-    for(int i=0;i<n;i++){
-        int tmp;
-        cin>>tmp;
-        for(int j=0;j<m;j++){
-            a[i][j].r=tmp;
-        }
-    }
-    for(int i=0;i<m;i++){
-        int tmp;
-        cin>>tmp;
-        for(int j=0;j<n;j++){
-            a[j][i].c=tmp;
-        }
-    }
-    for(int i=0;i<T;i++){
-        cin>>b[i].r;
-        cin>>b[i].c;
-        cin>>c[i].r;
-        cin>>c[i].c;
-    }
-    for(int i=0;i<T;i++){
-        b[i].r-=1;
-        b[i].c-=1;
-        c[i].r-=1;
-        c[i].c-=1;
-    }
-    cout<<endl;
+//     for(int i=0;i<n;i++){
+//         int tmp;
+//         cin>>tmp;
+//         for(int j=0;j<m;j++){
+//             a[i][j].r=tmp;
+//         }
+//     }
+//     for(int i=0;i<m;i++){
+//         int tmp;
+//         cin>>tmp;
+//         for(int j=0;j<n;j++){
+//             a[j][i].c=tmp;
+//         }
+//     }
+//     for(int i=0;i<T;i++){
+//         cin>>b[i].r;
+//         cin>>b[i].c;
+//         cin>>c[i].r;
+//         cin>>c[i].c;
+//     }
+//     for(int i=0;i<T;i++){
+//         b[i].r-=1;
+//         b[i].c-=1;
+//         c[i].r-=1;
+//         c[i].c-=1;
+//     }
+//     cout<<endl;
 
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            cout<<a[i][j].r<<" "<<a[i][j].c<<"   ";
-        }
+//     for(int i=0;i<n;i++){
+//         for(int j=0;j<m;j++){
+//             cout<<a[i][j].r<<" "<<a[i][j].c<<"   ";
+//         }
        
-        cout<<endl;
-    }
-    cout<<endl;
-    for(int i=0;i<T;i++){
-        cout<<i<<": "<<b[i].r<<" "<<b[i].c<<"   ";
-    }
-    cout<<endl;
-    for(int i=0;i<T;i++){
-        cout<<i<<": "<<c[i].r<<" "<<c[i].c<<"   ";
-    }
+//         cout<<endl;
+//     }
+//     cout<<endl;
+//     for(int i=0;i<T;i++){
+//         cout<<i<<": "<<b[i].r<<" "<<b[i].c<<"   ";
+//     }
+//     cout<<endl;
+//     for(int i=0;i<T;i++){
+//         cout<<i<<": "<<c[i].r<<" "<<c[i].c<<"   ";
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -239,3 +239,115 @@ int main()
 //         # 总路径数 = 组合数 * 行路径数 * 列路径数
 //         print(C(x + y, x) * v * w % mod)
 //     t -= 1
+
+
+
+#define int long long
+const int mod = 1000000007;
+const int N = 100002;  // 行/列最大可能离散化后的等级数
+const int M = 200002;  // 组合数最大可能参数
+
+// 离散化函数：将数组元素替换为排序后的索引（压缩数值范围）
+vector<int> lsh(vector<int>& a) {
+    vector<int> t = a;
+    sort(t.begin(), t.end());
+    t.erase(unique(t.begin(), t.end()), t.end());  // 去重并排序
+    for (int i = 0; i < a.size(); i++) {
+        // 找到元素在排序后数组中的位置作为新值（等级）
+        a[i] = lower_bound(t.begin(), t.end(), a[i]) - t.begin();
+    }
+    return a;
+}
+
+// 快速幂函数（用于计算逆元）
+int qpow(int a, int pw) {
+    int b = 1;
+    while (pw > 0) {
+        if (pw & 1) {
+            b = b * a % mod;
+        }
+        a = a * a % mod;
+        pw >>= 1;
+    }
+    return b;
+}
+
+vector<int> f(M);  // 阶乘数组
+
+// 预处理阶乘数组，用于快速计算组合数
+void pre() {
+    f[0] = 1;
+    for (int i = 1; i < M; i++) {
+        f[i] = f[i - 1] * i % mod;
+    }
+}
+
+// 组合数计算（使用费马小定理求逆元）
+int C(int n, int k) {
+    return f[n] * qpow(f[k] * f[n - k] % mod, mod - 2) % mod;
+}
+
+int32_t main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int n, m, t;
+    cin >> n >> m >> t;
+
+    vector<int> r(n), c(m);
+    for (int i = 0; i < n; i++) cin >> r[i];
+    for (int i = 0; i < m; i++) cin >> c[i];
+
+    // 对行和列权重进行离散化处理，转换为等级（数值越大，权重越高）
+    r = lsh(r);
+    c = lsh(c);
+
+    // 输出离散化后的结果
+    cout << "\n离散化后：\n";
+    for (int i = 0; i < n; i++) cout << r[i] << " ";
+    cout << "\n";
+    for (int i = 0; i < m; i++) cout << c[i] << " ";
+    cout << "\n";
+
+    vector<int> a(N, 0), b(N, 0);
+
+    // 统计每个行等级的出现次数
+    for (int i = 0; i < n; i++) a[r[i]]++;
+    for (int i = 1; i < N; i++) a[i] = a[i] * a[i - 1] % mod;
+
+    // 统计每个列等级的出现次数
+    for (int i = 0; i < m; i++) b[c[i]]++;
+    for (int i = 1; i < N; i++) b[i] = b[i] * b[i - 1] % mod;
+
+    pre();  // 预处理阶乘
+
+    while (t--) {
+        int sr, sc, tr, tc;
+        cin >> sr >> sc >> tr >> tc;
+        sr--; sc--; tr--; tc--;  // 转换为0-based索引
+
+        // 检查是否可行：起点的行/列等级必须不高于终点
+        if (r[tr] < r[sr] || c[tc] < c[sc]) {
+            cout << 0 << "\n";
+        }
+        // 行和列等级都相同的情况
+        else if (r[sr] == r[tr] && c[sc] == c[tc]) {
+            cout << (sr == tr && sc == tc ? 1 : 0) << "\n";
+        } else {
+            int x = r[tr] - r[sr];  // 行等级差
+            int y = c[tc] - c[sc];  // 列等级差
+
+            // 计算行方向的路径数：从tr等级到sr等级的乘积
+            int v = (sr == tr) ? 1 : a[r[tr] - 1] * qpow(a[r[sr]], mod - 2) % mod;
+
+            // 计算列方向的路径数：从tc等级到sc等级的乘积
+            int w = (sc == tc) ? 1 : b[c[tc] - 1] * qpow(b[c[sc]], mod - 2) % mod;
+
+            // 总路径数 = 组合数 * 行路径数 * 列路径数
+            cout << C(x + y, x) * v % mod * w % mod << "\n";
+        }
+    }
+
+    return 0;
+}
+
