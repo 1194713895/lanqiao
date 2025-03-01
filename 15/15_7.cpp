@@ -154,12 +154,12 @@ int main()
                 ans|=(1<<i);break;
 
             }
-            
+
             meo[x]=j;
         }
     }
-    cout<<ans;
 
+    cout<<ans;
 
     return 0;
 }
