@@ -119,35 +119,47 @@ using namespace std;
 #include <iostream>
 #include <unordered_map>
 using namespace std;
+
 int main()
 {
-  int n;cin>>n;
-  int nums[n],f[n];
-  for(int i=0;i<n;i++){
-     cin>>nums[i];
-  }
-  for(int i=0;i<n;i++){
-     cin>>f[i];
-  }
-  //前缀加hash
-  int mask=0;
-  int ans=0;
-  int max_w=30;
-  for(int i=max_w;i>=0;i--){
-    unordered_map<int,int>meo;
-    mask|=(1<<i);
-    int new_ans=ans|(1<<i);
-    for(int j=0;j<n;j++){
-       int x=nums[j]&mask;
-       int target=x^new_ans;
-       if(meo.find(target)!=meo.end()&&f[meo[target]]!=j&&f[j]!=meo[target]){
-          ans|=(1<<i);break;
-       }
-       meo[x]=j;
+    int n;
+    cin>>n;
+    int nums[n],f[n];
+
+    for(int i=0;i<n;i++){
+        cin>>nums[i];
     }
-  }
-cout<<ans;
+    for(int i=0;i<n;i++){
+        cin>>f[i];
+    }
+
+    //前缀加hash
+    int mask=0;
+    int ans=0;
+    int max_w=30;
+
+    for(int i=max_w;i>=0;i--){
+
+        unordered_map<int,int> meo;
+        mask|=(1<<i);
+        int new_ans=ans|(1<<i);
+
+        for(int j=0;j<n;j++){
+
+            int x=nums[j]&mask;
+            int target=x^new_ans;
+
+            if(meo.find(target)!=meo.end()&&f[meo[target]]!=j&&f[j]!=meo[target]){
+
+                ans|=(1<<i);break;
+
+            }
+            
+            meo[x]=j;
+        }
+    }
+    cout<<ans;
 
 
-  return 0;
+    return 0;
 }
