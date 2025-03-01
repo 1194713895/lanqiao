@@ -115,7 +115,6 @@ using namespace std;
 // }
 
 
-
 #include <iostream>
 #include <unordered_map>
 using namespace std;
@@ -123,43 +122,43 @@ using namespace std;
 int main()
 {
     int n;
-    cin>>n;
-    int nums[n],f[n];
+    cin >> n; // 输入数组的大小
+    int nums[n], f[n];
 
-    for(int i=0;i<n;i++){
-        cin>>nums[i];
+    // 输入 nums 数组
+    for (int i = 0; i < n; i++) {
+        cin >> nums[i];
     }
-    for(int i=0;i<n;i++){
-        cin>>f[i];
+    // 输入 f 数组
+    for (int i = 0; i < n; i++) {
+        cin >> f[i];
     }
 
-    //前缀加hash
-    int mask=0;
-    int ans=0;
-    int max_w=30;
+    // 前缀加哈希
+    int mask = 0; // 用于存储当前的前缀掩码
+    int ans = 0;  // 最终结果
+    int max_w = 30; // 假设处理的是 30 位整数
 
-    for(int i=max_w;i>=0;i--){
+    // 从高位到低位进行处理
+    for (int i = max_w; i >= 0; i--) {
+        unordered_map<int, int> meo; // 哈希表，用于存储前缀值及其对应的索引
+        mask |= (1 << i); // 将第 i 位加入到掩码中
+        int new_ans = ans | (1 << i); // 更新当前的答案
 
-        unordered_map<int,int> meo;
-        mask|=(1<<i);
-        int new_ans=ans|(1<<i);
+        // 遍历数组
+        for (int j = 0; j < n; j++) {
+            int x = nums[j] & mask; // 获取当前元素的前缀
+            int target = x ^ new_ans; // 计算目标值
 
-        for(int j=0;j<n;j++){
-
-            int x=nums[j]&mask;
-            int target=x^new_ans;
-
-            if(meo.find(target)!=meo.end()&&f[meo[target]]!=j&&f[j]!=meo[target]){
-
-                ans|=(1<<i);break;
-
+            // 如果哈希表中存在目标值，并且对应的索引与当前索引不同
+            if (meo.find(target) != meo.end() && f[meo[target]] != j && f[j] != meo[target]) {
+                ans |= (1 << i); // 更新答案
+                break;
             }
-
-            meo[x]=j;
+            meo[x] = j; // 将当前前缀及其索引存入哈希表
         }
     }
-
-    cout<<ans;
+    cout << ans; // 输出最终结果
 
     return 0;
 }
